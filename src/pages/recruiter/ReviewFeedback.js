@@ -32,7 +32,7 @@ export default function ReviewFeedback() {
     } catch (error) {
       console.error("❌ Failed to fetch review feedback:", error);
     }
-}, []);
+}, [token]);
 
 
   const handleSendToCandidate = async (id) => {
