@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState, useCallback } from "react";
 import {
   Table,
   Button,
@@ -7,9 +7,9 @@ import {
   DatePicker,
   message,
   Typography,
-  Space,
   Divider,
   Card,
+  Space,
 } from "antd";
 import axios from "axios";
 import FeedbackVisualCard from "../../components/FeedbackVisualCard";
@@ -24,7 +24,7 @@ export default function ClientFeedback() {
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
 
-  const fetchFeedbacks = async () => {
+  const fetchFeedbacks = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get("/api/client/feedback", {
@@ -49,7 +49,11 @@ export default function ClientFeedback() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    fetchFeedbacks();
+  }, [fetchFeedbacks]);
 
   const handleResponseChange = (id, field, value) => {
     setResponseInputs((prev) => ({
@@ -112,10 +116,6 @@ export default function ClientFeedback() {
       message.error("Failed to submit final decision.");
     }
   };
-
-  useEffect(() => {
-    fetchFeedbacks();
-  }, [fetchFeedbacks]);
 
   const columns = [
     {

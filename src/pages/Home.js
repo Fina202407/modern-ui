@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 import './Home.css';
 
-import smarthireBg from '../assets/background.png';
+// import smarthireBg from '../assets/background.png';
 import bgImage from '../assets/cover.png';
 import logo from '../assets/logo.png';
 
