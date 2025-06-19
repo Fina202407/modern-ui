@@ -115,7 +115,7 @@ export default function ClientFeedback() {
 
   useEffect(() => {
     fetchFeedbacks();
-  }, []);
+  }, [fetchFeedbacks]);
 
   const columns = [
     {

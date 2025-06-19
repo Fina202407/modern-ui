@@ -6,7 +6,7 @@ import {
   FileTextOutlined,
   UploadOutlined,
   ScheduleOutlined,
-  UserOutlined,
+  // UserOutlined,
   LogoutOutlined,
   CheckCircleOutlined,
   TeamOutlined,

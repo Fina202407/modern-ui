@@ -32,7 +32,7 @@ export default function RecruiterDashboard() {
       }
     };
     fetchStats();
-  }, []);
+  }, [token]);
 
   const metrics = [
     {

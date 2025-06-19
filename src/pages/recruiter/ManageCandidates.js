@@ -1,7 +1,7 @@
 // [IMPORTS]
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import moment from "moment";
+// import moment from "moment";
 import {
   Table,
   Select,
@@ -220,10 +220,18 @@ export default function ManageCandidates() {
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   fetchClients();
+  //   fetchUploads();
+  // }, []);
+    useEffect(() => {
     fetchClients();
     fetchUploads();
-  }, []);
+  }, [fetchClients, fetchUploads]);
+
+  useEffect(() => {
+    fetchJobsForClient();
+  }, [fetchJobsForClient, jobsByClient])
 
   useEffect(() => {
     uploads.forEach((item) => {

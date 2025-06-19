@@ -9,21 +9,37 @@ export default function MyInterviewPage() {
   const [interviews, setInterviews] = useState([]);
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const fetchInterviews = async () => {
-      try {
-        const res = await axios.get("/api/candidate/interviews", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setInterviews(res.data);
-        console.log("✅ Interview Data:", res.data);
-      } catch (err) {
-        console.error("❌ Failed to load interviews:", err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchInterviews = async () => {
+  //     try {
+  //       const res = await axios.get("/api/candidate/interviews", {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       });
+  //       setInterviews(res.data);
+  //       console.log("✅ Interview Data:", res.data);
+  //     } catch (err) {
+  //       console.error("❌ Failed to load interviews:", err);
+  //     }
+  //   };
 
-    fetchInterviews();
-  }, []);
+  //   fetchInterviews();
+  // }, []);
+      useEffect(() => {
+      const fetchInterviews = async () => {
+        try {
+          const res = await axios.get("/api/candidate/interviews", {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setInterviews(res.data);
+          console.log("✅ Interview Data:", res.data);
+        } catch (err) {
+          console.error("❌ Failed to load interviews:", err);
+        }
+      };
+
+      fetchInterviews();
+    }, [token]);
+
 
   const columns = [
     {

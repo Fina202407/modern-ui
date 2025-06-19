@@ -42,14 +42,22 @@ export default function Home() {
   const cvSlideImages = [cvSlides, cvSlides2, cvSlides3];
   const forumSlideImages = [forumSlides1, forumSlides2, forumSlides3];
 
+//   useEffect(() => {
+//   const interval = setInterval(() => {
+//     setCvSlide((prev) => (prev + 1) % cvSlideImages.length);
+//     setForumSlide((prev) => (prev + 1) % forumSlideImages.length);
+//     setImSlide((prev) => (prev + 1) % imSlideImages.length);
+//   }, 4000);
+//   return () => clearInterval(interval);
+// }, []);
   useEffect(() => {
-  const interval = setInterval(() => {
-    setCvSlide((prev) => (prev + 1) % cvSlideImages.length);
-    setForumSlide((prev) => (prev + 1) % forumSlideImages.length);
-    setImSlide((prev) => (prev + 1) % imSlideImages.length);
-  }, 4000);
-  return () => clearInterval(interval);
-}, []);
+    const interval = setInterval(() => {
+      setCvSlide((prev) => (prev + 1) % cvSlideImages.length);
+      setForumSlide((prev) => (prev + 1) % forumSlideImages.length);
+      setImSlide((prev) => (prev + 1) % imSlideImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [cvSlideImages.length, forumSlideImages.length, imSlideImages.length]);
 
 
   return (
