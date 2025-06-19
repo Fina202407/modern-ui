@@ -34,33 +34,60 @@ export default function ManageCandidates() {
 
   const token = localStorage.getItem("token");
 
-  const fetchClients = async () => {
-    const res = await axios.get("/api/admin/clients", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setClients(res.data);
-  };
+  // const fetchClients = async () => {
+  //   const res = await axios.get("/api/admin/clients", {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   });
+  //   setClients(res.data);
+  // };
+  const fetchClients = useCallback(async () => {
+  const res = await axios.get("/api/admin/clients", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  setClients(res.data);
+}, [token]);
 
-  const fetchUploads = async () => {
-    const res = await axios.get("/api/recruiter/uploads", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setUploads(res.data);
-    const preselected = {};
-    res.data.forEach((item) => {
-      if (item.clientId) {
-        preselected[item._id] = item.clientId._id;
-      }
-    });
-    setSelectedClients(preselected);
-  };
+  // const fetchUploads = async () => {
+  //   const res = await axios.get("/api/recruiter/uploads", {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   });
+  //   setUploads(res.data);
+  //   const preselected = {};
+  //   res.data.forEach((item) => {
+  //     if (item.clientId) {
+  //       preselected[item._id] = item.clientId._id;
+  //     }
+  //   });
+  //   setSelectedClients(preselected);
+  // };
+  const fetchUploads = useCallback(async () => {
+  const res = await axios.get("/api/recruiter/uploads", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  setUploads(res.data);
+  const preselected = {};
+  res.data.forEach((item) => {
+    if (item.clientId) {
+      preselected[item._id] = item.clientId._id;
+    }
+  });
+  setSelectedClients(preselected);
+}, [token]);
 
-  const fetchJobsForClient = async (clientId) => {
-    const res = await axios.get(`/api/recruiter/client-jobs/${clientId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setJobsByClient((prev) => ({ ...prev, [clientId]: res.data }));
-  };
+
+  // const fetchJobsForClient = async (clientId) => {
+  //   const res = await axios.get(`/api/recruiter/client-jobs/${clientId}`, {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   });
+  //   setJobsByClient((prev) => ({ ...prev, [clientId]: res.data }));
+  // };
+  const fetchJobsForClient = useCallback(async (clientId) => {
+  const res = await axios.get(`/api/recruiter/client-jobs/${clientId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  setJobsByClient((prev) => ({ ...prev, [clientId]: res.data }));
+}, [token]);
+
 
   const handleAnalyze = async (item) => {
     const clientId = selectedClients[item._id] || item.clientId?._id;
