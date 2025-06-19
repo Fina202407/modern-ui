@@ -44,9 +44,25 @@ const FeedbackVisualCard = ({ feedback }) => {
           >
             {summary}
           </Paragraph>
-          <a onClick={toggleSummary}>
+          {/* <a onClick={toggleSummary}>
             {showFullSummary ? "Show less ▲" : "Show more ▼"}
-          </a>
+          </a> */}
+                <button
+        onClick={toggleSummary}
+        style={{
+          background: "none",
+          border: "none",
+          padding: 0,
+          marginTop: 8,
+          color: "#1890ff",
+          textDecoration: "underline",
+          cursor: "pointer",
+          fontSize: "14px"
+        }}
+      >
+        {showFullSummary ? "Show less ▲" : "Show more ▼"}
+      </button>
+
         </Card>
       )}
 
