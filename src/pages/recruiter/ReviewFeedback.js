@@ -23,7 +23,7 @@ export default function ReviewFeedback() {
   const [feedbacks, setFeedbacks] = useState([]);
   const token = localStorage.getItem("token");
 
-  const fetchFeedbacks = async () => {
+  const fetchFeedbacks = useCallback(async () => {
     try {
       const res = await axios.get("/api/recruiter/review-feedback", {
         headers: { Authorization: `Bearer ${token}` },
@@ -32,7 +32,8 @@ export default function ReviewFeedback() {
     } catch (error) {
       console.error("❌ Failed to fetch review feedback:", error);
     }
-  };
+}, []);
+
 
   const handleSendToCandidate = async (id) => {
     try {
@@ -62,7 +63,7 @@ export default function ReviewFeedback() {
 
   useEffect(() => {
     fetchFeedbacks();
-  }, []);
+  }, [fetchFeedbacks]);
 
   const columns = [
     {

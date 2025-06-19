@@ -256,9 +256,15 @@ export default function ManageCandidates() {
     fetchUploads();
   }, [fetchClients, fetchUploads]);
 
+  // useEffect(() => {
+  //   fetchJobsForClient();
+  // }, [fetchJobsForClient, jobsByClient])
   useEffect(() => {
-    fetchJobsForClient();
-  }, [fetchJobsForClient, jobsByClient])
+  if (selectedClientForBulk) {
+    fetchJobsForClient(selectedClientForBulk);
+  }
+}, [fetchJobsForClient, selectedClientForBulk]);
+
 
   useEffect(() => {
     uploads.forEach((item) => {
